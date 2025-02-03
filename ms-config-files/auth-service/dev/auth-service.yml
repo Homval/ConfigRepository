@@ -1,7 +1,7 @@
 spring:
   liquibase:
     enabled: true
-    changelog: db/changelog/changelog-master.xml
+    changelog: db/changelog/changelog-master.yaml
 
   datasource:
     driver-class-name: org.postgresql.Driver

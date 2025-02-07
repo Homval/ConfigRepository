@@ -2,13 +2,11 @@ spring:
   liquibase:
     enabled: true
     changelog: db/changelog/changelog-master.yaml
-
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/auth-service
     username: postgres
     password: postgres
-
   jpa:
     hibernate:
       ddl-auto: none
@@ -16,4 +14,22 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    mode: 'PLAINTEXT'
+    producer:
+      topic:
+        audit-topic: ${KAFKA_PRODUCER_AUDIT_TOPIC:audit_messages}
+    consumer:
+      group-id: auth_service_group
+
+redis:
+  host: localhost
+  port: 6379
+  password: redis
+  cache:
+    prefix: 
+      block-refresh-token: refresh-token-block/
+    users-cache-expiration: 600
+        
 
